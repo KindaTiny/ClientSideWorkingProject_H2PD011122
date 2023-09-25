@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Test Projekt</title>
+    <script src="/Scripts/jquery-3.0.0.min.js"></script>
+    <link href="/CSS/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <input id="txtTestFeltjavaScript" type="text" size="50" />
+    <br />
+    <br />
+    <input id="btnTestjavaScript" type="button" value="Tryk her javaScript" onclick="DoTheShitjavaScript()" size="75" />
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <input id="txtTestFeltjQuery" type="text" size="50" />
+    <br />
+    <br />
+    <input id="btnTestjQuery" type="button" value="Tryk her jQuery" size="75" />
+    <br />
+    <input id="btnTestjQuery1" type="button" value="Tryk her jQuery" size="75" />
+
+    <br />
+    <br />
+    <input id="txtTestFeltTypeScript" type="text" size="100" />
+    <br />
+    <input id="btnTestTypeScript" type="button" value="Tryk her TypeScript" size="75" />
+    <br />
+    <textarea id="txtTypeScriptButtonHistory" rows="2" cols="100"></textarea>
+
+</body>
+
+</html>
+
+<script src="/ScriptFiles/SuperScript.js" type="text/javascript"></script>
+<script src="/ScriptFiles/TypeScriptShit.js"></script>
+<script src="/ScriptFiles/MenuBar.js"></script>
+<script type="text/javascript">
+    var CounterjavaScript = 0;
+    var CounterjQuery = 0;
+
+    DoTheShitjavaScript();
+    
+    $(document).ready(function () {
+        var TypeScriptTextArea = 2;
+
+        MakeTopMenuBar();
+
+        DoTheShitjQuery();
+
+        $("#btnTestjQuery").click(function () {
+            DoTheShitjQuery();
+        });
+
+        // Syntaksen vist herunder med kald af DoTheShitjQuery direkte, kan vi "kun"
+        // anvende, når den kaldte funktion (DoTheShitjQuery i tilfældet her), ikke 
+        // tager imod nogle parametre og heller ikke returnerer nogle parametre. 
+        $("#btnTestjQuery1").click(DoTheShitjQuery);
+
+        $("#btnTestTypeScript").click(function () {
+            DoTheShitTypeScript();
+            $("#txtTypeScriptButtonHistory").append(GetLastButtonActivity());
+            $("#txtTypeScriptButtonHistory").append("\n");
+            TypeScriptTextArea++;
+            $("#txtTypeScriptButtonHistory").attr("rows", TypeScriptTextArea);
+            $("#txtTestFeltTypeScript").val(GetLastButtonActivity());
+        });
+    });
+</script>

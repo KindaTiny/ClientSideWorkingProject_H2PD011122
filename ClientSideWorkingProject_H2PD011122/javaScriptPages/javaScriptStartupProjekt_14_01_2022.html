@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>javaScript Startup Projekt 20/01-2022</title>
+    <script src="/Scripts/jquery-3.0.0.min.js"></script>
+    <link href="/CSS/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="TopMenuBarContent"></div>
+
+    <h2>h2pd011122 javaScript Startup Projekt</h2>
+    <input id="btnPressME" type="button" value="Tryk her" onclick="NumberOfTimesKeyHasBeenPressed = ButtonPressed(NumberOfTimesKeyHasBeenPressed)" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedID">Number of Times Key has been Pressed (fundet i javaScript ved brug af ID)  : </label>
+    <input id="txtNumberOfTimesPressedID" type="text" value="0" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedName1">Number of Times Key has been Pressed (fundet i javaScript ved brug af Name) : </label>
+    <input name="txtNumberOfTimesPressedName" type="text" value="0" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedName2">Number of Times Key has been Pressed (fundet i javaScript ved brug af Name: </label>
+    <input name="txtNumberOfTimesPressedName" type="text" value="0" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedName2">Number of Times Key has been Pressed (fundet i javaScript ved brug af Name: </label>
+    <input name="txtNumberOfTimesPressedName" type="text" value="0" />
+</body>
+
+</html>
+
+<script src="/ScriptFiles/MenuBar.js"></script>
+<script src="/ScriptFiles/JavaScriptStartup.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        MakeTopMenuBar();
+    });
+
+    alert("Godmorgen h2pd01122");
+
+    window.onload = SetupDOMElements();
+</script>

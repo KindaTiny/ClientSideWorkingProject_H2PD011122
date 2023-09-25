@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery Startup Projekt 20/01-2022</title>
+    <script src="/Scripts/jquery-3.0.0.min.js"></script>
+    <link href="/CSS/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="TopMenuBarContent"></div>
+
+    <h2>h2pd011122 jQuery Startup Projekt</h2>
+    <input id="btnPressME" type="button" value="Tryk her" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedID">Number of Times Key has been Pressed (fundet i javaScript ved brug af ID)  : </label>
+    <input id="txtNumberOfTimesPressedID" type="text" value="0" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedName1">Number of Times Key has been Pressed (fundet i javaScript ved brug af Name) : </label>
+    <input name="txtNumberOfTimesPressedName" type="text" value="0" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedName2">Number of Times Key has been Pressed (fundet i javaScript ved brug af Name: </label>
+    <input name="txtNumberOfTimesPressedName" type="text" value="0" />
+    <br />
+    <br />
+    <label id="lblNumberOfTimesPressedName3">Number of Times Key has been Pressed (fundet i javaScript ved brug af Name: </label>
+    <input name="txtNumberOfTimesPressedName" type="text" value="0" />
+</body>
+
+</html>
+
+<script src="/ScriptFiles/MenuBar.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        MakeTopMenuBar();
+
+        var NumberOFTimesKeyHasBeenPressed = 0;
+
+        $("#btnPressME").click(function () {
+            alert("Har vi ikke  sagt Godmorgen " + ++NumberOFTimesKeyHasBeenPressed + " gang(e) før h2pd011122 ???");
+            $("#txtNumberOfTimesPressedID").val(NumberOFTimesKeyHasBeenPressed);
+
+            $('[name=txtNumberOfTimesPressedName]').val(NumberOFTimesKeyHasBeenPressed);
+        }); 
+    });
+</script>
