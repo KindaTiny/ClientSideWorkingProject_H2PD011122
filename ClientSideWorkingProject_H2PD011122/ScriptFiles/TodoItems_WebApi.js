@@ -9,10 +9,12 @@ let todos = [];
 let ThisUserName = "UserLukas";
 
 function getItems() {
-   fetch(uri + "?UserName=" + ThisUserName)
-        .then(response => response.json())
-        .then(data => _displayItems(data))
-        .catch(error => console.error('Unable to get items.', error));
+    setTimeout(function () {
+        fetch(uri + "?UserName=" + ThisUserName)
+            .then(response => response.json())
+            .then(data => _displayItems(data))
+            .catch(error => console.error('Unable to get items.', error));
+    }, 1000)
 
 }
 
@@ -21,12 +23,13 @@ function addItem() {
     const AddDescTextbox = document.getElementById('add-desc')
     const AddCountry = document.getElementById('add-Country')
 
+
     const item = {
         name: addNameTextbox.value.trim(),
         desc: AddDescTextbox.value.trim(),
-        countryID: AddCountry.options[AddCountry.selectedIndex].value
-
+        countryID: parseInt(AddCountry.value)
     }
+    console.log(item);
 
     fetch(uri + "?UserName=" + ThisUserName, {
         method: 'POST',
@@ -39,12 +42,12 @@ function addItem() {
         .then(response => response.json())
         .then(() => {
             getItems();
-            addNameTextbox.value = '';
-            AddDescTextbox.value = '';
         })
         //.catch(error => console.error('Unable to add item.', error));
-    .catch(error => console.error('Unable to add item.', error));       
+        .catch(error => console.error('Unable to add item.', error));
+
 }
+
 
 function deleteItem(id) {
     fetch(`${uri}/${id}` + "?UserName=" + ThisUserName, {
@@ -54,30 +57,35 @@ function deleteItem(id) {
         .catch(error => console.error('Unable to delete item.', error));
 }
 
-function displayEditForm(id,CountryID) {
+
+let editButton = button.cloneNode(false);
+editButton.innerText = 'Edit';
+editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
+
+function displayEditForm(id, CountryID) {
     const item = todos.find(item => item.cityId === id);
 
     document.getElementById('edit-name').value = item.name;
     document.getElementById('edit-desc').value = item.description;
     document.getElementById('edit-id').value = item.cityId;
     document.getElementById('editForm').style.display = 'block';
-    document.getElementById('edit-CountryID').value = CountryID
-   
+    document.getElementById('edit-CountryID').value = CountryID;
+    document.getElementById('edit-country').value = editcountry;
+
 
 }
 
 function updateItem() {
     const itemId = document.getElementById('edit-id').value;
-    const countryID = document.getElementById('edit-CountryID').value; 
+    const countryID = document.getElementById('edit-country').value;
     const item = {
 
 
         name: document.getElementById('edit-name').value.trim(),
-        description: document.getElementById('edit-desc').value.trim(), 
+        description: document.getElementById('edit-desc').value.trim(),
         cityId: parseInt(itemId),
-        countryID: parseInt(countryID),    
+        countryID: parseInt(countryID),
     };
-
 
 
     fetch(`${uri}/${itemId}` + "?UserName=" + ThisUserName, {
@@ -110,7 +118,8 @@ function _displayItems(data) {
     const tBody = document.getElementById('todos');
     tBody.innerHTML = '';
     console.log(data)
-  
+
+
 
     _displayCount(data.length);
 
@@ -133,7 +142,7 @@ function _displayItems(data) {
         deleteButton.innerText = 'Delete';
         deleteButton.setAttribute('onclick', `deleteItem(${item.cityId})`);
 
-        
+
         let tr = tBody.insertRow();
 
         let td1 = tr.insertCell(0);
@@ -156,14 +165,14 @@ function _displayItems(data) {
         //td4.appendChild(textNode3);
 
         let td6 = tr.insertCell(4);
-         td6.appendChild(editButton);
+        td6.appendChild(editButton);
 
         let td7 = tr.insertCell(5);
         td7.appendChild(deleteButton);
 
-      
+
     });
-    
+
     todos = data;
 
 }
@@ -174,28 +183,38 @@ function GetCountries() {
         .then(data => _displayCountries(data))
         .catch(error => console.error('Unable to get items.', error));
 }
-function _displayCountries(data)
-{
+function _displayCountries(data) {
     addCountry = document.getElementById('add-Country');
     removeOptions(addCountry);
 
-        var select = document.getElementById('add-Country');
+    var select = document.getElementById('add-Country');
 
-        for (i = 0; i <= data.length; i++) {
-            var optco = data[i];
-            var opt = document.createElement('option');
-            opt.textContent = optco.countryName;
-            opt.value = optco.countryID;
-            select.appendChild(opt);
+    for (i = 0; i <= data.length; i++) {
+        var optco = data[i];
+        var opt = document.createElement('option');
+        opt.textContent = optco.countryName;
+        opt.value = optco.countryID;
+        select.appendChild(opt);
+
+        ////
+        editcountry = document.getElementById('edit-country');
+
+        var selects = document.getElementById('edit-country');
+
+        var optcos = data[i];
+        var opts = document.createElement('option');
+        opts.textContent = optcos.countryName;
+        opts.value = optcos.countryID;
+        selects.appendChild(opts);
+
+
     }
 }
+
 function removeOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
     for (i = L; i >= 0; i--) {
         selectElement.remove(i);
     }
 }
-
-
-
 
