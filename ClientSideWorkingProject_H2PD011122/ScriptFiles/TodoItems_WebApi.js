@@ -26,7 +26,7 @@ function addItem() {
 
     const item = {
         name: addNameTextbox.value.trim(),
-        desc: AddDescTextbox.value.trim(),
+        description: AddDescTextbox.value.trim(),
         countryID: parseInt(AddCountry.value)
     }
     console.log(item);
